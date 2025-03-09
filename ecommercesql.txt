@@ -1,0 +1,98 @@
+-- 1️⃣ Create Database
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
+
+-- 2️⃣ Create Tables
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    email VARCHAR(255)
+);
+
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(255),
+    price DECIMAL(10,2)
+);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    order_status VARCHAR(50),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
+);
+
+CREATE TABLE order_details (
+    order_detail_id INT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+CREATE TABLE payments (
+    payment_id INT PRIMARY KEY,
+    order_id INT,
+    amount DECIMAL(10,2),
+    payment_status VARCHAR(50),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+-- 3️⃣ Load Data (Use MySQL Workbench or Command Line)
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/customers.csv' 
+INTO TABLE customers 
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' 
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS;
+
+-- Repeat for other tables
+
+-- 4️⃣ Data Cleaning
+DELETE FROM customers WHERE customer_name IS NULL OR email IS NULL;
+DELETE FROM orders WHERE order_date IS NULL OR customer_id IS NULL;
+DELETE FROM order_details WHERE quantity IS NULL OR price IS NULL;
+
+-- Remove Duplicates
+DELETE c1 FROM customers c1
+JOIN customers c2 
+ON c1.customer_id = c2.customer_id AND c1.email = c2.email
+WHERE c1.customer_id > c2.customer_id;
+
+-- 5️⃣ Handling Outliers (Example: Replace extreme prices in products)
+UPDATE products 
+SET price = (SELECT AVG(price) FROM products) 
+WHERE price < (SELECT PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY price) - 1.5 * (PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY price) - PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY price)) FROM products)
+OR price > (SELECT PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY price) + 1.5 * (PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY price) - PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY price)) FROM products);
+
+-- 6️⃣ Analysis with Window Functions
+SELECT customer_id, SUM(amount) AS total_spent,
+       ROW_NUMBER() OVER (ORDER BY SUM(amount) DESC) AS row_num,
+       RANK() OVER (ORDER BY SUM(amount) DESC) AS rank_num
+FROM payments
+GROUP BY customer_id;
+
+-- Latest Order per Customer
+WITH LatestOrders AS (
+    SELECT customer_id, order_id, order_date,
+           RANK() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rank
+    FROM orders
+)
+SELECT * FROM LatestOrders WHERE rank = 1;
+
+-- 7️⃣ Performance Optimization
+CREATE INDEX idx_customer ON orders(customer_id);
+CREATE INDEX idx_product ON order_details(product_id);
+
+-- 8️⃣ Create Table Using CTAS (Copy Data)
+CREATE TABLE top_customers AS
+SELECT customer_id, SUM(amount) AS total_spent
+FROM payments
+GROUP BY customer_id
+ORDER BY total_spent DESC
+LIMIT 10;
+
+-- 9️⃣ Query Performance Check
+EXPLAIN SELECT * FROM orders WHERE customer_id = 101;

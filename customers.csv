@@ -1,0 +1,106 @@
+customer_id,customer_name,email,location
+1,David,user1@example.com,Miami
+2,Eve,,Chicago
+3,Charlie,user3@example.com,Houston
+4,Eve,user4@example.com,Houston
+5,Eve,user5@example.com,Chicago
+6,Bob,,Houston
+7,Charlie,user7@example.com,Chicago
+8,Charlie,user8@example.com,Los Angeles
+9,Charlie,user9@example.com,Chicago
+10,Eve,user10@example.com,Chicago
+11,,,Houston
+12,Charlie,user12@example.com,Houston
+13,Frank,user13@example.com,New York
+14,Eve,user14@example.com,New York
+15,Bob,user15@example.com,Los Angeles
+16,David,user16@example.com,New York
+17,Frank,,Chicago
+18,Frank,user18@example.com,Houston
+19,Bob,user19@example.com,New York
+20,David,user20@example.com,New York
+21, ,user21@example.com,Los Angeles
+22,Alice,user22@example.com,Los Angeles
+23,David,user23@example.com,Chicago
+24,Bob,user24@example.com,Houston
+25,Frank,user25@example.com,Los Angeles
+26,Eve,user26@example.com,New York
+27,David,user27@example.com,Houston
+28,Alice,user28@example.com,Houston
+29,Alice,user29@example.com,New York
+30,Charlie,user30@example.com,Los Angeles
+31,Charlie,user31@example.com,New York
+32,Bob,,Houston
+33,David,user33@example.com,Miami
+34,David,,Miami
+35,Frank,user35@example.com,Chicago
+36,Frank,user36@example.com,New York
+37,Frank,user37@example.com,New York
+38,Charlie,user38@example.com,Chicago
+39,David,user39@example.com,Chicago
+40,David,user40@example.com,Chicago
+41,Alice,user41@example.com,Houston
+42,Charlie,user42@example.com,New York
+43,Eve,,Houston
+44,Charlie,user44@example.com,Chicago
+45,Eve,user45@example.com,New York
+46,Alice,user46@example.com,Houston
+47,Bob,user47@example.com,Houston
+48,David,user48@example.com,Chicago
+49,Alice,user49@example.com,New York
+50,David,user50@example.com,Chicago
+51,Frank,user51@example.com,New York
+52,Bob,user52@example.com,Miami
+53,Bob,user53@example.com,Los Angeles
+54,Alice,user54@example.com,Los Angeles
+55,Bob,user55@example.com,Los Angeles
+56,Eve,user56@example.com,Chicago
+57,Bob,user57@example.com,Miami
+58,David,user58@example.com,New York
+59,David,user59@example.com,Houston
+60,David,user60@example.com,New York
+61,David,user61@example.com,Houston
+62,Eve,,New York
+63,Charlie,user63@example.com,Miami
+64,Frank,user64@example.com,Houston
+65,Alice,user65@example.com,Chicago
+66,David,user66@example.com,New York
+67,Bob,user67@example.com,New York
+68,David,user68@example.com,Houston
+69,Bob,user69@example.com,Chicago
+70,Frank,user70@example.com,Chicago
+71,Frank,user71@example.com,Miami
+72,Frank,user72@example.com,Chicago
+73,Bob,user73@example.com,Chicago
+74,David,user74@example.com,Chicago
+75,Frank,user75@example.com,Los Angeles
+76,Eve,user76@example.com,Miami
+77,Bob,user77@example.com,New York
+78,Bob,user78@example.com,Houston
+79,David,,New York
+80,Bob,user80@example.com,Miami
+81,Bob,user81@example.com,Houston
+82,Frank,,Miami
+83,David,user83@example.com,Chicago
+84,Frank,user84@example.com,Houston
+85,Frank,user85@example.com,Chicago
+86,David,user86@example.com,New York
+87,Alice,user87@example.com,New York
+88,Frank,user88@example.com,Houston
+89,Eve,user89@example.com,Houston
+90,Eve,user90@example.com,Miami
+91,Bob,user91@example.com,Miami
+92,Eve,user92@example.com,Chicago
+93,Bob,user93@example.com,Houston
+94,Alice,user94@example.com,New York
+95,David,user95@example.com,Miami
+96,David,user96@example.com,Miami
+97,David,user97@example.com,New York
+98,Eve,,Miami
+99,Alice,user99@example.com,Chicago
+100,Eve,user100@example.com,Houston
+1,David,user1@example.com,Miami
+2,Eve,,Chicago
+3,Charlie,user3@example.com,Houston
+4,Eve,user4@example.com,Houston
+5,Eve,user5@example.com,Chicago
